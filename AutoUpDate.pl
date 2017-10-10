@@ -29,7 +29,7 @@ sub unload {
 
 my %links = (
              './tables/bRO/recvpackets.txt' => 	
-	     				   'https://raw.githubusercontent.com/OpenKore/openkore/master/tables/bRO/recvpackets.txt',
+	     				  './tables/bRO/recvpackets.txt' => 'https://raw.githubusercontent.com/OpenKore/openkore/master/tables/bRO/recvpackets.txt',
 					   './tables/bRO/shuffle.txt' => 'https://raw.githubusercontent.com/OpenKore/openkore/master/tables/bRO/shuffle.txt',					   
 					   './tables/bRO/sync.txt' => 'https://raw.githubusercontent.com/OpenKore/openkore/master/tables/bRO/sync.txt',
 					   './tables/servers.txt' => 'https://raw.githubusercontent.com/OpenKore/openkore/master/tables/servers.txt',
