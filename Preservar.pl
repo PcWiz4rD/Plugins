@@ -91,7 +91,7 @@ sub checkPreserve {
 			warning "========Preservar======== \n";
 			warning "motivo: ". $reason."\n" if defined($reason);
 			$::messageSender->sendSkillUse(475, 1, $::accountID);
-			$Skilluse = time;
+			#$Skilluse = time;
 			$delaySkillUse = time;	}
 		}
 	
