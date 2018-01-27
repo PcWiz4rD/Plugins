@@ -7,6 +7,13 @@
 #Você é livre para usar, a não ser que seja o OSCAR
 #
 
+#exemple
+#Skills_avoid 55 { #sempre pela ID
+#armor Manto do Cerco [1]
+#}
+
+
+
 package iscasting;
 
 
