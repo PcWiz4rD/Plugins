@@ -1,0 +1,59 @@
+#    ____      _       ___                  ____ 
+#   / __ \____| |     / (_)___  ____ ______/ __ \
+#  / /_/ / ___/ | /| / / /_  / / __ `/ ___/ / / /
+# / ____/ /__ | |/ |/ / / / /_/ /_/ / /  / /_/ / 
+#/_/    \___/ |__/|__/_/ /___/\__,_/_/  /_____/  
+#
+#Você é livre para usar, a não ser que seja o OSCAR
+#
+
+package iscasting;
+
+
+use strict;
+use Plugins;
+use Log qw(message error);
+use Utils;
+use AI;
+use Globals;
+use Misc;
+use Actor;
+use Actor::Item;
+use Settings;
+use Task;
+
+
+Plugins::register('Avoid_skills','avoid skills and switch',\&unload);
+
+
+my $hooks = Plugins::addHooks(
+	['is_casting', \&casting, undef]
+);
+	sub unload {
+	Plugins::delHooks($hooks);
+		
+	}
+
+	sub casting {
+	my (undef, $args) = @_;
+	return if(!exists $config{Skills_avoid_0});
+	for (my $i = 0; exists $config{"Skills_avoid_$i"}; $i++){
+		
+	if($args->{skillID} == $config{"Skills_avoid_$i"}){
+	my $armor = $::char->inventory()->getByName($config{"Skills_avoid_$i"."_armor"});
+
+	
+	$armor->equip();
+	error("Equipando $armor \n");
+																							}	
+														}
+				}
+	
+
+
+
+
+	
+	1;
+#01010110 01101001 01110110 01100001 00100000 01101111 00100000 01001001 01101101 01110000 11101001 01110010 01101001 01101111 00100000 01100100 01100101 00100000 01100010 01110010 01101001 01110100 01100001 01101110 01101001 01100001 
+
