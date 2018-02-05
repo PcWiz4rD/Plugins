@@ -251,7 +251,7 @@ sub storeList {
 		my $will_buy = $max_possible >= $max_wanted ? $max_wanted : $max_possible;		
 		next if ($will_buy == 0);
 		
-		writter("Found item $name with good price! Price is $price, max price for it is $maxPrice! The store has $amount of it, with our zeny we can buy $max_possible! Buying $will_buy of it!");
+		writter("Found item $name with good price! Price is $price, max price for it is $maxPrice! The store has $amount of it, with our zeny we can buy $max_possible! Buying $will_buy of it!\n");
 		
 		my $zeny_wasted = $will_buy * $price;		
 		$bought{$name} += $will_buy;		
