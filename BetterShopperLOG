@@ -276,7 +276,7 @@ sub writter {
 	my ($args, $self) = @_;
 	my $tmp = "$Settings::logs_folder/Shopper.txt";
 	
-	open my $out, '>>:utf8', $tmp or die "nao foi";
+	open my $out, '>>:utf8', $tmp or die "Erro ao Abrir Arquivo";
 	print $out "[".getFormattedDate(int(time))."] $args ";
 	warning "$args \n";
 	close $out;
