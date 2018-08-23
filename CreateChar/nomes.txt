@@ -1,0 +1,61 @@
+[Nomes]Jonathan ArcherBeverly CrusherCamisa vermelha
+Chakotay
+Charles Tucker III
+Christine Chapel
+Damar 
+Data
+Deanna Troi
+Doutor
+Dukat
+Elim Garak
+Ezri Dax
+Geordi La Forge
+Grande Nagus
+Hikaru Sulu
+Hoshi Sato
+Jadzia Dax
+Jake Sisko
+Kathryn Janeway
+Janice Rand
+Julian Bashir
+Katherine Pulaski
+Keiko O'Brien
+Kes 
+Khan Noonien Singh
+Harry Kim
+Kira Nerys
+James T. Kirk
+Metha 13
+Leonard McCoy
+Lwaxana Troi
+Malcolm Reed
+Michael Burnham
+Miles O'Brien
+Montgomery Scott
+Harry Mudd
+Neelix
+Nog 
+Odo 
+Tom Paris
+Pavel Chekov
+Phlox 
+Jean-Luc Picard
+Christopher Pike
+Q
+Quark 
+Ro Laren
+Rom 
+Sela 
+Sete de Nove
+Benjamin Sisko
+Spock
+Tasha Yar
+Travis Mayweather
+Uhura
+Wesley Crusher
+Weyoun
+William T. Riker
+Winn Adami
+Worf
+Zefram Cochrane
+Zek
