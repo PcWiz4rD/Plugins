@@ -17,115 +17,86 @@ use Misc;
 use Utils;
 use Plugins;
 
-
 Plugins::register("createCharacter", "Criar personagens automaticamente", \&unload);
-
-	
 
 my $hooks = Plugins::addHooks( 
 	['charSelectScreen', \&create],
-    ['packet_pre/character_creation_successful', \&selectChar],
-    ['packet_pre/character_creation_failed', \&createFailed],
-	);
-	
-	
+	['packet_pre/character_creation_successful', \&selectChar],
+	['packet_pre/character_creation_failed', \&createFailed],
+);
+
 sub unload {
    Plugins::delHooks($hooks);
-   undef $hooks;
-   
+   undef $hooks;   
 }
 
+my @patente = qw(Sd Cb Sgt St Ten Cap Maj Cel); # coloque aqui primeira parte do nome
+my @numero = qw(1 2 3 4 5 6 7 8 9); #coloque aqui segunda parte do nome
+my @nomes = readNames(); #Nomes.txt
 
-my @Patente = qw (Sd Cb Sgt St Ten Cap Maj Cel); # coloque aqui primeira parte do nome
-my @Numero = qw(1 2 3 4 5 6 7 8 9); #coloque aqui segunda parte do nome
-
-my @nomes = ReadNames(); #Nomes.txt
-			
-
-my $betterslot;
-my $finalname;
+my $betterSlot;
+my $finalName;
 my $status = 1;
 my $char = $config{char};
 
-			
-
-	
-	
-
-	sub selectChar{
-	
-		
-	$messageSender->sendCharLogin($betterslot);
-        $timeout{'charlogin'}{'time'} = time;
-        configModify("char", $betterslot);
+sub selectChar {
+	$messageSender->sendCharLogin($betterSlot);
+	$timeout{'charlogin'}{'time'} = time;
+	configModify("char", $betterSlot);
 	$status = 0;
-	}
-	
-	
-	sub create{
-		
+}
+
+sub create {
 	my ($self, $args) = @_;
-		
-	
-	$betterslot = selectBestslot();
-	$finalname = lettersGroups();
-	
-	if($status == 1 && $config{char} eq "" ){
-	warning "$config{char} \n";
-	warning "Criando char $finalname Melhor slot $betterslot \n";
-	$messageSender->sendCharCreate($betterslot,$finalname, 9, 9, 1, 9, 1, 1, 0, 0); 
-	$args->{return} = 2;
-	}
-	$args->{return} = 2 if($status == 0);
 
+	$betterSlot = selectBestSlot();
+	$finalName = lettersGroups();
+
+	if ($status == 1 && $config{char} eq "" ) {
+		warning "$config{char} \n";
+		warning "Criando char $finalName Melhor slot $betterSlot \n";
+		$messageSender->sendCharCreate($betterSlot, $finalName, 9, 9, 1, 9, 1, 1, 0, 0); 
+		$args->{return} = 2;
+	}
 	
+	$args->{return} = 2 if ($status == 0);
+}
+
+sub selectBestSlot {
+	my $slot;
 	
-	
-	
-	
-	
+	for (my $i = 0; $i < scalar @chars; $i++){
+		if (!@chars[$i] && !$slot){
+			$slot = $i;
 		}
-	
-	
-	
-	sub selectBestslot {	
-	
-	my $slot;	
-	for (my $i = 0; $i < scalar @chars; $i++){		
-		if(!@chars[$i]&& !$slot){
-			$slot = $i;	}
-												}
-												
-	return $slot ? $slot : (scalar @chars == 0) ? 0 : scalar @chars;
 	}
-	
-		
-		
-		
-	sub createFailed {
-	
-	$status = 1;
-	
-	}
-		
-	sub lettersGroups {
-	
-	my $name = @Patente[int(rand(scalar @Patente))];
-	$name .= " ";
-	$name .= @nomes[int(rand(scalar @nomes))];	
-	for(my $i = 0; $i < int(rand(3)+1); $i++) {
-		my $random_number = int(rand(scalar @Numero));
-		$name .= @Numero[$random_number];
-								  }
-	return $name;
-	}
-			
 
-			
-	sub ReadNames {
-	my @name_list;
+	return $slot ? $slot : (scalar @chars == 0) ? 0 : scalar @chars;
+}
+
+sub createFailed {
+	$status = 1;
+}
+
+sub lettersGroups {
+	my $name = @patente[int(rand(scalar @patente))];
+	$name .= " ";
+	$name .= @nomes[int(rand(scalar @nomes))];
+	
+	for (my $i = 0; $i < int(rand(3)+1); $i++) {
+		my $randomNumber = int(rand(scalar @numero));
+		$name .= @numero[$randomNumber];
+	}
+	
+	return $name;
+}
+
+sub readNames {
+	my @nameList;
+	
 	open (NOMES, "<Nomes.txt") or die "Error: file cannot be found: nomes.txt\n";
-	my $canread;
+	
+	my $canRead;
 	my $i = 0;
 
 	while (<NOMES>) {
@@ -134,18 +105,14 @@ my $char = $config{char};
 		$_ =~ s/\r?\n|\r//g; # remove linebreak
 
 		if ($_ =~ /\[Nomes\]/) {
-			$canread = 1;
-		} elsif ($canread) {
-			push (@name_list, $_);
+			$canRead = 1;
+		} elsif ($canRead) {
+			push (@nameList, $_);
 		}
-		
 	}
+	
 	close NOMES;
-	return @name_list;
+	return @nameList;
 }
-
-
-			
-			
 
 1;
