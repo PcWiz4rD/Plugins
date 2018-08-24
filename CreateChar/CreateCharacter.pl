@@ -53,7 +53,6 @@ sub create {
 	$finalName = lettersGroups();
 
 	if ($status == 1 && $config{char} eq "" ) {
-		warning "$config{char} \n";
 		warning "Criando char $finalName Melhor slot $betterSlot \n";
 		$messageSender->sendCharCreate($betterSlot, $finalName, 9, 9, 1, 9, 1, 1, 0, 0); 
 		$args->{return} = 2;
