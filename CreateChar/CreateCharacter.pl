@@ -55,10 +55,10 @@ my $char = $config{char};
 	sub selectChar{
 	
 		
-		$messageSender->sendCharLogin($betterslot);
+	$messageSender->sendCharLogin($betterslot);
         $timeout{'charlogin'}{'time'} = time;
         configModify("char", $betterslot);
-		$status = 0;
+	$status = 0;
 	}
 	
 	
