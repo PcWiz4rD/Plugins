@@ -38,6 +38,7 @@ my @nomes = ReadNames(); #Nomes.txt
 my $betterslot;
 my $finalname;
 my $status = 1;
+my $char = $config{char};
 
 			
 
@@ -50,7 +51,7 @@ my $status = 1;
 		$messageSender->sendCharLogin($betterslot);
         $timeout{'charlogin'}{'time'} = time;
         configModify("char", $betterslot);
-		$status = 1;
+		$status = 0;
 	}
 	
 	
@@ -58,15 +59,26 @@ my $status = 1;
 		
 	my ($self, $args) = @_;
 		
-	return if($status == 0);
+	
 	$betterslot = selectBestslot();
 	$finalname = lettersGroups();
+	
+	if($status == 1 && $config{char} eq "" ){
+	warning "$config{char} \n";
 	warning "Criando char $finalname Melhor slot $betterslot \n";
-	$messageSender->sendCharCreate($betterslot,$finalname, 9, 9, 1, 9, 1, 1, 0, 0);   
+	$messageSender->sendCharCreate($betterslot,$finalname, 9, 9, 1, 9, 1, 1, 0, 0); 
 	$args->{return} = 2;
-	$status = 0;
-		
 	}
+	$args->{return} = 2 if($status == 0);
+
+	
+	
+	
+	
+	
+	
+		}
+	
 	
 	
 	sub selectBestslot {	
