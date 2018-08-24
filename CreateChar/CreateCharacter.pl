@@ -103,11 +103,11 @@ my $char = $config{char};
 		
 	sub lettersGroups {
 	
-	my $name = @Patente[int(rand(8))];
+	my $name = @Patente[int(rand(scalar @Patente))];
 	$name .= " ";
-	$name .= @nomes[int(rand(63))];	
+	$name .= @nomes[int(rand(scalar @nomes))];	
 	for(my $i = 0; $i < int(rand(3)+1); $i++) {
-		my $random_number = int(rand(9));
+		my $random_number = int(rand(scalar @Numero));
 		$name .= @Numero[$random_number];
 								  }
 	return $name;
