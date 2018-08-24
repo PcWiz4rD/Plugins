@@ -124,7 +124,7 @@ my $char = $config{char};
 			
 	sub ReadNames {
 	my @name_list;
-	open (NOMES, "<Nomes.txt") or die "Error: file cannot be found: ips.txt\n";
+	open (NOMES, "<Nomes.txt") or die "Error: file cannot be found: nomes.txt\n";
 	my $canread;
 	my $i = 0;
 
