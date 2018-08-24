@@ -65,7 +65,7 @@ sub selectBestSlot {
 	my $slot;
 	
 	for (my $i = 0; $i < scalar @chars; $i++){
-		if (!@chars[$i] && !$slot){
+		if (!$chars[$i] && !$slot){
 			$slot = $i;
 		}
 	}
@@ -78,13 +78,13 @@ sub createFailed {
 }
 
 sub lettersGroups {
-	my $name = @patente[int(rand(scalar @patente))];
+	my $name = $patente[int(rand(scalar @patente))];
 	$name .= " ";
-	$name .= @nomes[int(rand(scalar @nomes))];
+	$name .= $nomes[int(rand(scalar @nomes))];
 	
 	for (my $i = 0; $i < int(rand(3)+1); $i++) {
 		my $randomNumber = int(rand(scalar @numero));
-		$name .= @numero[$randomNumber];
+		$name .= $numero[$randomNumber];
 	}
 	
 	return $name;
